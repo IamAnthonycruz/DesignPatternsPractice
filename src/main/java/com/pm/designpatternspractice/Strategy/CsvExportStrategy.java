@@ -1,9 +1,9 @@
-package com.pm.designpatternspractice;
+package com.pm.designpatternspractice.Strategy;
 
 import java.util.List;
 import java.util.Map;
 
-public class CsvExportStrategy implements  ExportStrategy{
+public class CsvExportStrategy implements ExportStrategy {
     @Override
     public String export(List<Map<String, String>> records) {
         StringBuilder sb = new StringBuilder();

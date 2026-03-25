@@ -1,6 +1,5 @@
-package com.pm.designpatternspractice;
+package com.pm.designpatternspractice.Strategy;
 
-import javax.xml.crypto.Data;
 import java.util.*;
 
 /**

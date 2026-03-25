@@ -1,4 +1,4 @@
-package com.pm.designpatternspractice;
+package com.pm.designpatternspractice.Strategy;
 
 import java.util.List;
 import java.util.Map;
