@@ -1,5 +1,6 @@
 package com.pm.designpatternspractice;
 
+import javax.xml.crypto.Data;
 import java.util.*;
 
 /**
@@ -20,7 +21,19 @@ import java.util.*;
 // ============ THIS IS THE CODE YOU'RE REFACTORING ============
 
 class DataExporter {
+    private ExportStrategy exportStrategy;
+    public DataExporter(){}
+    public DataExporter(ExportStrategy exportStrategy){
+        this.exportStrategy = exportStrategy;
+    }
+    public void setExportStrategy(ExportStrategy exportStrategy){
+        this.exportStrategy = exportStrategy;
+    }
 
+    public String export(List<Map<String,String>> data){
+        return this.exportStrategy.export(data);
+    }
+    /*
     public String export(String format, List<Map<String, String>> records) {
         if (format.equals("json")) {
             StringBuilder sb = new StringBuilder("[\n");
@@ -72,7 +85,7 @@ class DataExporter {
         } else {
             throw new IllegalArgumentException("Unknown format: " + format);
         }
-    }
+    }*/
 }
 
 // ============ YOUR REFACTORED VERSION GOES BELOW ============
@@ -102,7 +115,7 @@ class StrategyPractice {
         data.add(row1);
         data.add(row2);
 
-        // The old way (works but ugly):
+        /*:
         DataExporter oldExporter = new DataExporter();
         System.out.println("=== OLD JSON ===");
         System.out.println(oldExporter.export("json", data));
@@ -110,19 +123,19 @@ class StrategyPractice {
         System.out.println(oldExporter.export("csv", data));
         System.out.println("=== OLD XML ===");
         System.out.println(oldExporter.export("xml", data));
-
-        // TODO: Uncomment your refactored version:
+    */
+        //TODO: Uncomment your refactored version:
         // System.out.println("=== NEW JSON ===");
-        // DataExporter jsonExporter = new DataExporter(new JsonExportStrategy());
-        // System.out.println(jsonExporter.export(data));
+         DataExporter jsonExporter = new DataExporter(new JsonExportStrategy());
+         System.out.println(jsonExporter.export(data));
         //
-        // System.out.println("=== NEW CSV ===");
-        // DataExporter csvExporter = new DataExporter(new CsvExportStrategy());
-        // System.out.println(csvExporter.export(data));
+         System.out.println("=== NEW CSV ===");
+         DataExporter csvExporter = new DataExporter(new CsvExportStrategy());
+         System.out.println(csvExporter.export(data));
         //
-        // System.out.println("=== NEW XML ===");
-        // DataExporter xmlExporter = new DataExporter(new XmlExportStrategy());
-        // System.out.println(xmlExporter.export(data));
+        System.out.println("=== NEW XML ===");
+         DataExporter xmlExporter = new DataExporter(new XmlExportStrategy());
+        System.out.println(xmlExporter.export(data));
 
         // The real win: adding YAML means writing ONE new class. Zero changes elsewhere.
     }
